@@ -1,12 +1,23 @@
-let title = "dev";
-let screens = [];
-let screenPrice = 0;
-let rollback = 0;
-let fullPrice = 0;
-let adaptive = false;
+const title = "js сourse";
+const screens = "Простые, Сложные, Интерактивные";
+const screenPrice = 500; // любое число
+const rollback = 50; // откат
+const fullPrice = 5500; // столько хочу заработать
+const adaptive = true; // булевое значение
 
-alert("Скрипт подключён и работает.");
+console.log(typeof title); // string название
+console.log(typeof fullPrice); // number
+console.log(typeof adaptive);
 
-console.log("Сообщение из консоли: ошибок быть не должно.");
+// Стоимость верстки экранов и стоимостб разработки сайта
+console.log(`Стоимость верстки экранов ${screenPrice} $`);
+console.log(`Стоимость разработки сайта ${fullPrice} $`);
 
-console.log({ title, screens, screenPrice, rollback, fullPrice, adaptive });
+const screensArray = screens
+  .toLowerCase()
+  .split(",")
+  .map((item) => item.trim());
+console.log(screensArray);
+
+const rollbackAmount = fullPrice * (rollback / 1100);
+console.log(`Процент отката посреднику за работу: ${rollbackAmount}`);

@@ -1,19 +1,89 @@
-// 1- Создать переменную num со значением 266219
-const num = 266219;
+//на каком языке выводится в консоль
+const lang = "ru";
 
-// 2- Произведение цифр числа (через переумножение)
-const product = String(num)
-  .split("")
-  .reduce((acc, digit) => acc * Number(digit), 1);
+// if
+if (lang === "ru") {
+  console.log([
+    "Понедельник",
+    "Вторник",
+    "Среда",
+    "Четверг",
+    "Пятница",
+    "Суббота",
+    "Воскресенье",
+  ]);
+} else if (lang === "en") {
+  console.log([
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ]);
+}
 
-console.log("Произведение цифр:", product); // 1296
+// switch и case
+switch (lang) {
+  case "ru":
+    console.log("b (switch):", [
+      "Понедельник",
+      "Вторник",
+      "Среда",
+      "Четверг",
+      "Пятница",
+      "Суббота",
+      "Воскресенье",
+    ]);
+    break;
 
-// 3- Возвести результат в 3 степень
-const cubed = product ** 3;
+  case "en":
+    console.log("b (switch):", [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ]);
+    break;
+}
 
-console.log("Результат в степени 3:", cubed); // = (2176782336)
+// без if и switch
+const weekDays = {
+  ru: [
+    "Понедельник",
+    "Вторник",
+    "Среда",
+    "Четверг",
+    "Пятница",
+    "Суббота",
+    "Воскресенье",
+  ],
+  en: [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ],
+};
+// отвечает за вывод информации в консоль
+console.log("c (object):", weekDays[lang]);
 
-// 4- первые (2 цифры полученного числа (21))
-const firstTwoDigits = String(cubed).slice(0, 2);
+//имя которое выводится в консоль
+const namePerson = "Артем";
 
-console.log("Первые 2 цифры:", firstTwoDigits);
+const role =
+  namePerson === "Артем"
+    ? "Директор"
+    : namePerson === "Александр"
+    ? "Преподаватель"
+    : //если написать любое другое имя то выдаст в консоли (Студент)
+      "Студент";
+// отвечает за вывод информации в консоль
+console.log(" (ternary):", role);

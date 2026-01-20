@@ -1,66 +1,66 @@
 "use strict";
 
-const screens =
-  prompt(
-    'Какие типы экранов нужно разработать? (пример: "Простые, Сложные, Интерактивные")'
-  ) || "";
+let title = prompt("Как называется ваш проект?");
+let screens = prompt("Какие типы экранов нужно разработать?");
+let screenPrice = +prompt("Сколько будет стоит данная работа?");
+let adaptive = prompt("Нужен ли адаптив на сайте?");
+let service1 = prompt("Какой дополнительный тип услуги нужен?");
+let servicePrice1 = +prompt("Сколько это будет стоить?");
+let service2 = prompt("Какой дополнительный тип услуги нужен?");
+let servicePrice2 = +prompt("Сколько это будет стоить?");
+let rollback = 10;
 
-const screenPrice = Number(
-  prompt("Сколько будет стоить данная работа? (пример: 12000)")
-);
+const showTypeOf = function (variable) {
+  console.log(variable, typeof variable);
+};
 
-const adaptiveAnswer = (prompt("Нужен ли адаптив на сайте? (да/нет)") || "")
-  .trim()
-  .toLowerCase();
-const adaptive =
-  adaptiveAnswer === "да" ||
-  adaptiveAnswer === "yes" ||
-  adaptiveAnswer === "true";
+const getRollbackMessage = function (price) {
+  if (price >= 30000) {
+    return "Даем скидку в 10%";
+  } else if (price >= 15000 && price < 30000) {
+    return "Даем скидку в 5%";
+  } else if (price >= 0 && price < 15000) {
+    return "Скидка не предусмотрена";
+  } else {
+    return "Что то пошло не так";
+  }
+};
 
-const service1 = prompt("Какой дополнительный тип услуги нужен? (1)") || "";
-const servicePrice1 = Number(prompt("Сколько это будет стоить? (1)"));
+//сумма доп услуг
+const getAllServicePrices = function (price1, price2) {
+  return price1 + price2;
+};
+let allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
 
-const service2 = prompt("Какой дополнительный тип услуги нужен? (2)") || "";
-const servicePrice2 = Number(prompt("Сколько это будет стоить? (2)"));
-
-const screensArray = screens
-  .toLowerCase()
-  .split(",")
-  .map((item) => item.trim())
-  .filter(Boolean);
-
-console.log("Типы экранов:", screensArray);
-console.log("Нужен адаптив:", adaptive);
-
-// Защита от NaN
-const safeScreenPrice = Number.isFinite(screenPrice) ? screenPrice : 0;
-const safeServicePrice1 = Number.isFinite(servicePrice1) ? servicePrice1 : 0;
-const safeServicePrice2 = Number.isFinite(servicePrice2) ? servicePrice2 : 0;
-
-const fullPrice = safeScreenPrice + safeServicePrice1 + safeServicePrice2;
-
-// Откат посреднику
-const rollback =
-  Number(prompt("Укажи откат посреднику (сумма в рублях):")) || 0;
-
-// Итоговая стоимость за вычетом отката, округлить вверх
-const servicePercentPrice = Math.ceil(fullPrice - rollback);
-console.log(
-  "Сумма после вычета отката (округлено вверх):",
-  servicePercentPrice
-);
-
-if (fullPrice < 0) {
-  console.log("Что то пошло не так");
-} else if (fullPrice > 30000) {
-  console.log("Даем скидку в 10%");
-} else if (fullPrice > 15000 && fullPrice < 30000) {
-  console.log("Даем скидку в 5%");
-} else if (fullPrice > 0 && fullPrice < 15000) {
-  console.log("Скидка не предусмотрена");
-} else {
-  console.log("Пограничное значение, скидка определяется по договоренности");
+//общая стоимость
+function getFullPrice(screenPrice, allServicePrices) {
+  return screenPrice + allServicePrices;
 }
+let fullPrice = getFullPrice(screenPrice, allServicePrices);
 
-console.log("Услуги:", { service1, service2 });
-console.log("Стоимость работ (fullPrice):", fullPrice);
+const getTitle = function (projectTitle) {
+  let clearedTitle = String(projectTitle ?? "").trim();
+  if (!clearedTitle) return "";
+  clearedTitle = clearedTitle.toLowerCase();
+  return clearedTitle[0].toUpperCase() + clearedTitle.slice(1);
+};
+title = getTitle(title);
+
+// итоговая стоимость c  вычетом  отката
+const getServicePercentPrices = function (fullPrice, rollback) {
+  return fullPrice - fullPrice * (rollback / 100);
+};
+let servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
+
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+
+// вывод в консоль строки с типами экранов для разработки
+console.log("Типы экранов для разработки:", screens);
+
+// сообщение о скидке
+console.log(getRollbackMessage(fullPrice));
+
+// стоимость с вычетом отката посреднику
+console.log(getServicePercentPrices(fullPrice, rollback));

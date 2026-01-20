@@ -87,3 +87,33 @@ const role =
       "Студент";
 // отвечает за вывод информации в консоль
 console.log(" (ternary):", role);
+
+function formatText(value) {
+  // если передали не строку кидает ошибку
+  if (typeof value !== "string") {
+    console.log("Ошибка: передайте строку");
+    return;
+  }
+
+  // пробелы в начале и в конце
+  const trimmed = value.trim();
+
+  // если строка больше 30 символов обрезаем и добавляем "..."
+
+  if (trimmed.length > 30) {
+    return trimmed.slice(0, 30) + "...";
+  }
+  return trimmed;
+}
+
+console.log(formatText("   Hello world!   "));
+// "Hello world!"
+console.log(
+  formatText(
+    "   Это очень длинная строка, которая точно больше тридцати символов   "
+  )
+);
+// "Это очень длинная строка,..."
+
+console.log(formatText(123));
+// Ошибка

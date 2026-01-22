@@ -82,9 +82,9 @@ const role =
   namePerson === "Артем"
     ? "Директор"
     : namePerson === "Александр"
-    ? "Преподаватель"
-    : //если написать любое другое имя то выдаст в консоли (Студент)
-      "Студент";
+      ? "Преподаватель"
+      : //если написать любое другое имя то выдаст в консоли (Студент)
+        "Студент";
 // отвечает за вывод информации в консоль
 console.log(" (ternary):", role);
 
@@ -110,10 +110,35 @@ console.log(formatText("   Hello world!   "));
 // "Hello world!"
 console.log(
   formatText(
-    "   Это очень длинная строка, которая точно больше тридцати символов   "
-  )
+    "   Это очень длинная строка, которая точно больше тридцати символов   ",
+  ),
 );
 // "Это очень длинная строка,..."
 
 console.log(formatText(123));
 // Ошибка
+
+let arr = ["12345", "20266", "98765", "40045", "56789", "23456", "45678"];
+
+let filteredArr = [];
+
+for (let i = 0; i < arr.length; i++) {
+  if (arr[i].startsWith("2") || arr[i].startsWith("4")) {
+    filteredArr.push(arr[i]);
+  }
+}
+
+console.log(filteredArr);
+
+for (let i = 2; i <= 100; i++) {
+  let isPrime = true;
+  for (j = 2; j < i; j++) {
+    if (i % J === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime) {
+    console.log(i + "Делители этого числа: 1 и" + i);
+  }
+}

@@ -15,7 +15,7 @@ document.head.insertAdjacentHTML(
   '<style>body{background-image:url("./image/you-dont-know-js.jpg")}</style>',
 );
 
-// 3 Исправить заголовок в книге 3( Получится - "Книга 3. this и Прототипы Объектов")
+// 3 Исправить заголовок в книге 3( Получится - "Книга 3.this  и Прототипы Объектов")
 book3.querySelector("a").textContent = "Книга 3. this и Прототипы Объектов";
 
 // 4 Удалить рекламу со страницы
@@ -27,6 +27,21 @@ adv.remove();
 // Книга 2
 const book2List = book2.querySelector("ul");
 const book2Items = book2List.querySelectorAll("li");
+book2List.append(
+  book2Items[0],
+  book2Items[1],
+  book2Items[2],
+  book2Items[3],
+  book2Items[4],
+  book2Items[5],
+  book2Items[6],
+  book2Items[7],
+  book2Items[8],
+  book2Items[9],
+  book2Items[10],
+);
+console.log(book2Items);
+
 // Книга 5
 const book5List = book5.querySelector("ul");
 const book5Items = book5List.querySelectorAll("li");
